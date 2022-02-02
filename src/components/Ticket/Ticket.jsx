@@ -41,7 +41,7 @@ export default function Ticket () {
                     13400
                 </div>
                 <div className="ticket__logo">
-                    <img src="#" alt="company-logo" />
+                    <img src="https://pics.avs.io/99/36/{S7}.png" alt="company-logo" />
                 </div>
             </div>
             <List

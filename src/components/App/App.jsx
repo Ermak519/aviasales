@@ -3,6 +3,8 @@ import {TransplantsFilter} from '../TransplantsFilter';
 import {TicketFilter} from '../TicketFilter';
 import { TicketList } from "../TicketList";
 
+
+import Logo from './logo.svg';
 import './App.scss'
 
 export default function App () {
@@ -10,7 +12,7 @@ export default function App () {
         <main className="app">
             <header className="header">
                 <div className="header__logo">
-                    <img src="#" alt="aviasales logo" />
+                    <img src={Logo} alt="aviasales logo" />
                 </div>
             </header>
             <section className="main">

@@ -4,6 +4,9 @@
     width: 232px;
     padding: 10px;
     margin-right: 10px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10px;
   }
 }
 

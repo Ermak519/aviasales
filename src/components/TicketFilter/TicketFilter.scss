@@ -1,0 +1,12 @@
+.ant-radio-button-wrapper {
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  &.ant-radio-button-wrapper-checked {
+    &.ticket-filter {
+      &__item {
+        display: flex;
+      }
+    }
+  }
+}
