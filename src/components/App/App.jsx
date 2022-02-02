@@ -14,12 +14,17 @@ export default function App () {
                 </div>
             </header>
             <section className="main">
-                <aside className="transplant-filter">
-                    <TransplantsFilter/>
+                <aside className="main__filter ">
+                    <TransplantsFilter />
                 </aside>
                 <section className="main__app">
-                    <TicketFilter/>
-                    <TicketList/>
+                    <div className="main__ticket-filter">
+                        <TicketFilter/>
+                    </div>
+                    <div className="main__ticket-list">
+                        <TicketList />
+                    </div>
+                    
                 </section>
             </section>
         </main>

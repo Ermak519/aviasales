@@ -1,0 +1,14 @@
+.ant-card-bordered {
+  &.filter {
+    border-radius: 5px;
+    width: 232px;
+    padding: 10px;
+    margin-right: 10px;
+  }
+}
+
+.filter {
+  &__header {
+    padding-bottom: 10px;
+  }
+}
