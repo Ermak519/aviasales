@@ -1,37 +1,37 @@
 import React from "react";
-import {List, Card} from 'antd';
+import { List, Card } from 'antd'
 
 import './Ticket.scss'
 
-export default function Ticket () {
+export default function Ticket() {
     const data = [
-            {
+        {
             first: 'MOW – HKT',
             second: '10:45 – 08:00',
-            },
-            {
+        },
+        {
             first: 'В пути',
             second: '21ч 15м',
-            },
-            {
+        },
+        {
             first: '2 пересадки',
             second: 'HKG, JNB',
-            },
-            {
+        },
+        {
             first: 'MOW – HKT',
             second: '11:20 – 00:50',
-            },
-            {
+        },
+        {
             first: 'В пути',
             second: '13ч 30м',
-            },
-            {
+        },
+        {
             first: '1 пересадка',
             second: 'HKG',
-            },
+        },
     ]
     return (
-        <Card 
+        <Card
             className="ticket__card"
             style={{ width: 502, height: 184, borderRadius: 5, padding: 20 }}
             hoverable
@@ -50,10 +50,10 @@ export default function Ticket () {
                 renderItem={item => (
                     <List.Item>
                         <div className="flight">
-                            <div>
+                            <div className="ticket__plane-title">
                                 {item.first}
-                            </div>
-                            <div>
+                            </div >
+                            <div className="ticket__plane-data">
                                 {item.second}
                             </div>
                         </div>
@@ -62,5 +62,5 @@ export default function Ticket () {
             />
 
         </Card>
-  )
+    )
 }

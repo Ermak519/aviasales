@@ -1,11 +1,11 @@
 import React from "react";
-import { List, Button } from "antd";
+import { List, Button } from 'antd'
 
-import {Ticket} from '../Ticket'
+import { Ticket } from '../Ticket'
 
 import './TicketList.scss'
 
-export default function TicketList () {
+export default function TicketList() {
     const data = [
         'Racing car sprays burning fuel into crowd.',
         'Japanese princess to wed commoner.',
@@ -13,7 +13,7 @@ export default function TicketList () {
         'Man charged over missing wedding girl.',
         'Los Angeles battles huge wildfires.',
     ];
-    
+
     return (
         <>
             <List
@@ -21,12 +21,12 @@ export default function TicketList () {
                 dataSource={data}
                 renderItem={item => (
                     <List.Item>
-                        <Ticket className="ticket" item={item}/> 
+                        <Ticket className="ticket" item={item} />
                     </List.Item>
                 )}
             />
             <Button className="list-button" type="primary">Показать еще 5 билетов!</Button>
         </>
-    
+
     )
 }

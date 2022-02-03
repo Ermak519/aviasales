@@ -4,14 +4,37 @@
     width: 232px;
     padding: 10px;
     margin-right: 10px;
-    position: -webkit-sticky;
     position: sticky;
     top: 10px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 20px;
+    align-items: center;
+    color: #4A4A4A;
+    padding: 20px;
   }
 }
 
 .filter {
-  &__header {
-    padding-bottom: 10px;
+  &__header {    
+    padding-bottom: 20px;
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 12px;
+    align-items: flex-end;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #4A4A4A;
+  }
+}
+
+.ant-checkbox-wrapper {
+  &.ant-checkbox-group-item:not(:last-child){
+    padding-bottom: 20px;
   }
 }

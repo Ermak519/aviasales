@@ -4,9 +4,31 @@
 
   &.ant-radio-button-wrapper-checked {
     &.ticket-filter {
+      font-family: "Open Sans";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 20px;
+      align-items: center;
+      text-align: center;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
       &__item {
         display: flex;
       }
     }
   }
+}
+
+.ticket-filter {
+  display: flex;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 8px;
+  line-height: 20px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }

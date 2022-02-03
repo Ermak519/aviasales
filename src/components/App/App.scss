@@ -1,4 +1,5 @@
 @import '~antd/dist/antd.css';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
 
 .app {
   width: 750px;
@@ -20,6 +21,10 @@
 .main {
   display: flex;
   padding-top: 20px;
+
+  &__app{
+    width: 515px;
+  }
 
   &__ticket-filter {
     padding-bottom: 10px;

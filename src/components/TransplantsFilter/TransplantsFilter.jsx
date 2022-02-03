@@ -12,28 +12,28 @@ export default function TransplantsFilter() {
     const [checkedList, setCheckedList] = React.useState(defaultOption);
     const [indeterminate, setIndeterminate] = React.useState(true);
     const [checkAll, setCheckAll] = React.useState(false);
-  
+
     const onChange = list => {
-      setCheckedList(list);
-      setIndeterminate(!!list.length && list.length < plainOptions.length);
-      setCheckAll(list.length === plainOptions.length);
+        setCheckedList(list);
+        setIndeterminate(!!list.length && list.length < plainOptions.length);
+        setCheckAll(list.length === plainOptions.length);
     };
-  
+
     const onCheckAllChange = e => {
-      setCheckedList(e.target.checked ? plainOptions : []);
-      setIndeterminate(false);
-      setCheckAll(e.target.checked);
+        setCheckedList(e.target.checked ? plainOptions : []);
+        setIndeterminate(false);
+        setCheckAll(e.target.checked);
     };
 
 
     return (
         <Card className="filter" >
-          <div className="filter__header">Количество пересадок</div>
-          <Checkbox indeterminate={indeterminate} onChange={onCheckAllChange} checked={checkAll}>
-            Все
-          </Checkbox>
-          <CheckboxGroup options={plainOptions} value={checkedList} onChange={onChange} />
+            <div className="filter__header">Количество пересадок</div>
+            <Checkbox indeterminate={indeterminate} onChange={onCheckAllChange} checked={checkAll} style={{ paddingBottom: 20 }}>
+                Все
+            </Checkbox>
+            <CheckboxGroup options={plainOptions} value={checkedList} onChange={onChange} />
         </Card>
-            
+
     )
 }
