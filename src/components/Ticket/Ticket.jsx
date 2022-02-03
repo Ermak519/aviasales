@@ -33,7 +33,7 @@ export default function Ticket() {
     return (
         <Card
             className="ticket__card"
-            style={{ width: 502, height: 184, borderRadius: 5, padding: 20 }}
+            style={{ width: 510, height: 184, borderRadius: 5, padding: 20 }}
             hoverable
         >
             <div className="ticket__header">
