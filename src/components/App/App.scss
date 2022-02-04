@@ -28,6 +28,14 @@
 
   &__ticket-filter {
     padding-bottom: 10px;
+    display: flex;
+    .ticket-filter{
+      display: flex;
+      &__item{
+        align-items: center;
+        text-align: center;
+      }
+    }
   }
 }
 
