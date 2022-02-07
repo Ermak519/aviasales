@@ -1,18 +1,48 @@
 const initialState = {
-    transPlants : [],
-    ticketFilter: 'cheep'
+    ticketFilter: 'cheep',
+    transPlants: {
+        labels: ['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки'],
+        all: false,
+        options: []
+    }
 }
 
-export default function appReducer(action, state = initialState) {
+export default function reducer(state = initialState, action = {}) {
     switch (action.type) {
+        case 'CHEEP':
+            return {
+                ...state,
+                ticketFilter: 'cheep'
+            }
+        case 'FAST':
+            return {
+                ...state,
+                ticketFilter: 'fast'
+            }
+        case 'OPTIMAL':
+            return {
+                ...state,
+                ticketFilter: 'optimal'
+            }
         case 'ALL':
             return {
-                ...state, 
-                transPlants: [
-                    'Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки'
-                ]
+                ...state,
+                transPlants: {
+                    ...state.transPlants,
+                    all: !state.all,
+                    options: ['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки']
+                }
             }
-    default:
-        return state
+        case 'GROUP':
+            return {
+                ...state,
+                transPlants: {
+                    ...state.transPlants,
+                    all: !state.all,
+                    options: []
+                }
+            }
+        default:
+            return state;
     }
 }

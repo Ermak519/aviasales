@@ -1,13 +1,15 @@
+/* eslint-disable */
+
 import React from "react";
-import {TransplantsFilter} from '../TransplantsFilter';
-import {TicketFilter} from '../TicketFilter';
+import { TransplantsFilter } from '../TransplantsFilter';
+import { TicketFilter } from '../TicketFilter';
 import { TicketList } from "../TicketList";
 
 
 import Logo from './logo.svg';
 import './App.scss'
 
-export default function App () {
+export default function App() {
     return (
         <main className="app">
             <header className="header">
@@ -21,12 +23,12 @@ export default function App () {
                 </aside>
                 <section className="main__app">
                     <div className="main__ticket-filter">
-                        <TicketFilter/>
+                        <TicketFilter />
                     </div>
                     <div className="main__ticket-list">
                         <TicketList />
                     </div>
-                    
+
                 </section>
             </section>
         </main>

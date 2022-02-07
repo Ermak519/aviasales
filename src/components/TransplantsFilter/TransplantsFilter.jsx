@@ -1,46 +1,35 @@
+/* eslint-disable */
+
 import React from "react";
 import { Card, Checkbox } from 'antd';
-
+import { useDispatch, useSelector } from "react-redux";
+import { allTrans, checkGroup } from "../../services/store/actions";
 import './TransplantsFilter.scss';
 
 export default function TransplantsFilter() {
-    const plainOptions = ['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки'];
-    const defaultOption = []
 
-    const [checkedList, setCheckedList] = React.useState(defaultOption);
-    const [indeterminate, setIndeterminate] = React.useState(false);
-    const [checkAll, setCheckAll] = React.useState(false);
+    const labels = useSelector(state => state.transPlants.labels);
+    const options = useSelector(state => state.transPlants.options);
+    const all = useSelector(state => state.all)
 
-    const onChange = list => {
-        setCheckedList(list);
-        setIndeterminate(!!list.length && list.length < plainOptions.length);
-        setCheckAll(list.length === plainOptions.length);
-    };
-
-    const onCheckAllChange = e => {
-        setCheckedList(e.target.checked ? plainOptions : []);
-        setIndeterminate(true);
-        setCheckAll(e.target.checked);
-    };
-
+    const dispatch = useDispatch()
 
     return (
         <Card className="filter" >
-            <div className="filter__header">Количество пересадок</div>
-            <Checkbox 
-              indeterminate={indeterminate} 
-              onChange={onCheckAllChange} 
-              checked={checkAll} 
-              style={{ paddingBottom: 20 }}
+            <div className="filter__header">Количество пересадок </div>
+            <Checkbox
+                indeterminate={all}
+                onChange={() => { dispatch(allTrans()) }}
+                checked={all} // true/false
+                style={{ paddingBottom: 20 }}
             >
                 Все
             </Checkbox>
-            <Checkbox.Group 
-              options={plainOptions} 
-              value={checkedList} 
-              onChange={onChange} 
+            <Checkbox.Group
+                options={labels}
+                value={options}
+                onChange={(item) => { console.log(item); dispatch(checkGroup(item)) }}
             />
         </Card>
-
     )
 }

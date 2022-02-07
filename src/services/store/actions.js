@@ -1,15 +1,11 @@
-export const allTrans = () => ({type: 'ALL'});
+export const allTrans = () => ({ type: 'ALL' });
 
-export const withOutTrans = () => ({type: 'OUT'});
+export const checkGroup = (item) => ({ type: 'GROUP', placeholder: item })
 
-export const oneTrans = () => ({type: 'ONE'});
+// top filter
 
-export const twoTrans = () => ({type: 'TWO'});
+export const cheeper = () => ({ type: 'CHEEP' });
 
-export const threeTrans = () => ({type: 'THREE'});
+export const faster = () => ({ type: 'FAST' });
 
-export const cheeper = () => ({type: 'CHEEP'});
-
-export const faster = () => ({type: 'FAST'});
-
-export const optimal = () => ({type: 'OPTIMAL'})
+export const optimal = () => ({ type: 'OPTIMAL' });
