@@ -3,14 +3,12 @@ import { Card, Checkbox } from 'antd';
 
 import './TransplantsFilter.scss';
 
-const CheckboxGroup = Checkbox.Group;
-
 export default function TransplantsFilter() {
     const plainOptions = ['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки'];
-    const defaultOption = ['1 пересадка']
+    const defaultOption = []
 
     const [checkedList, setCheckedList] = React.useState(defaultOption);
-    const [indeterminate, setIndeterminate] = React.useState(true);
+    const [indeterminate, setIndeterminate] = React.useState(false);
     const [checkAll, setCheckAll] = React.useState(false);
 
     const onChange = list => {
@@ -21,7 +19,7 @@ export default function TransplantsFilter() {
 
     const onCheckAllChange = e => {
         setCheckedList(e.target.checked ? plainOptions : []);
-        setIndeterminate(false);
+        setIndeterminate(true);
         setCheckAll(e.target.checked);
     };
 
@@ -29,10 +27,19 @@ export default function TransplantsFilter() {
     return (
         <Card className="filter" >
             <div className="filter__header">Количество пересадок</div>
-            <Checkbox indeterminate={indeterminate} onChange={onCheckAllChange} checked={checkAll} style={{ paddingBottom: 20 }}>
+            <Checkbox 
+              indeterminate={indeterminate} 
+              onChange={onCheckAllChange} 
+              checked={checkAll} 
+              style={{ paddingBottom: 20 }}
+            >
                 Все
             </Checkbox>
-            <CheckboxGroup options={plainOptions} value={checkedList} onChange={onChange} />
+            <Checkbox.Group 
+              options={plainOptions} 
+              value={checkedList} 
+              onChange={onChange} 
+            />
         </Card>
 
     )
