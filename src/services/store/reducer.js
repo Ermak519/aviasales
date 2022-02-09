@@ -8,6 +8,7 @@ const initialState = {
 }
 
 export default function reducer(state = initialState, action = {}) {
+
     switch (action.type) {
         case 'CHEEP':
             return {
@@ -29,8 +30,8 @@ export default function reducer(state = initialState, action = {}) {
                 ...state,
                 transPlants: {
                     ...state.transPlants,
-                    all: !state.all,
-                    options: ['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки']
+                    all: !state.transPlants.all,
+                    options: !state.transPlants.all ? [...state.transPlants.labels] : []
                 }
             }
         case 'GROUP':
@@ -38,8 +39,8 @@ export default function reducer(state = initialState, action = {}) {
                 ...state,
                 transPlants: {
                     ...state.transPlants,
-                    all: !state.all,
-                    options: []
+                    all: state.transPlants.labels.length === action.placeholder.length,
+                    options: [...action.placeholder]
                 }
             }
         default:

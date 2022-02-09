@@ -10,17 +10,17 @@ export default function TransplantsFilter() {
 
     const labels = useSelector(state => state.transPlants.labels);
     const options = useSelector(state => state.transPlants.options);
-    const all = useSelector(state => state.all)
+    const all = useSelector(state => state.transPlants.all)
 
     const dispatch = useDispatch()
+
 
     return (
         <Card className="filter" >
             <div className="filter__header">Количество пересадок </div>
             <Checkbox
-                indeterminate={all}
                 onChange={() => { dispatch(allTrans()) }}
-                checked={all} // true/false
+                checked={all}
                 style={{ paddingBottom: 20 }}
             >
                 Все
@@ -28,7 +28,7 @@ export default function TransplantsFilter() {
             <Checkbox.Group
                 options={labels}
                 value={options}
-                onChange={(item) => { console.log(item); dispatch(checkGroup(item)) }}
+                onChange={(item) => { dispatch(checkGroup(item)) }}
             />
         </Card>
     )
