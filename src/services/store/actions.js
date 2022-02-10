@@ -1,6 +1,6 @@
 export const allTrans = () => ({ type: 'ALL' });
 
-export const checkGroup = (item) => ({ type: 'GROUP', placeholder: item })
+export const checkGroup = (items) => ({ type: 'GROUP', list: items })
 
 // top filter
 

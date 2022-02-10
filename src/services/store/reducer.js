@@ -1,10 +1,16 @@
 const initialState = {
     ticketFilter: 'cheep',
+    searchID: null,
     transPlants: {
         labels: ['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки'],
         all: false,
         options: []
-    }
+    },
+    ticketListStatus: 'loaded',
+    tickets: [
+        'dddd',
+        'aaaa'
+    ]
 }
 
 export default function reducer(state = initialState, action = {}) {
@@ -39,8 +45,8 @@ export default function reducer(state = initialState, action = {}) {
                 ...state,
                 transPlants: {
                     ...state.transPlants,
-                    all: state.transPlants.labels.length === action.placeholder.length,
-                    options: [...action.placeholder]
+                    all: state.transPlants.labels.length === action.list.length,
+                    options: [...action.list]
                 }
             }
         default:
