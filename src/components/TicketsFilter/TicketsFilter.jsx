@@ -4,13 +4,13 @@ import React from "react";
 import { Card, Checkbox } from 'antd';
 import { useDispatch, useSelector } from "react-redux";
 import { allTrans, checkGroup } from "../../services/store/actions";
-import './TransplantsFilter.scss';
+import './TicketsFilter.scss';
 
-export default function TransplantsFilter() {
+export default function TicketsFilter() {
 
-    const labels = useSelector(state => state.transPlants.labels);
-    const options = useSelector(state => state.transPlants.options);
-    const all = useSelector(state => state.transPlants.all)
+    const labels = useSelector(state => state.ticketsFilter.labels);
+    const options = useSelector(state => state.ticketsFilter.options);
+    const all = useSelector(state => state.ticketsFilter.all)
 
     const dispatch = useDispatch()
 

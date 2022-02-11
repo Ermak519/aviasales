@@ -3,12 +3,12 @@ import { Radio } from 'antd';
 import { useDispatch, useSelector } from "react-redux";
 
 import { cheeper, faster, optimal } from '../../services/store/actions'
-import './TicketFilter.scss'
+import './TicketSort.scss'
 
 
-export default function TicketFilter() {
+export default function TicketSort() {
 
-  const value = useSelector(state => state.ticketFilter)
+  const value = useSelector(state => state.ticketSort)
   const dispatch = useDispatch()
 
   return (
