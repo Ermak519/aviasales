@@ -18,10 +18,12 @@ export default function TicketList() {
     const status = useSelector(state => state.ticketListStatus);
     const lengthOfList = useSelector(state => state.lengthOfList);
     const allTickets = useSelector(state => state.allTickets);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         // dispatch(getTicketsData());
+
         dispatch(setLoadingStatus())
         getSearchID().then(({ searchId }) => {
             dispatch(setSearchID(searchId));
@@ -29,12 +31,13 @@ export default function TicketList() {
         }).then((id) => {
             getTickets(id).then(({ tickets }) => {
                 dispatch(addTicketsData(tickets))
-                dispatch(setLoadedStatus())
+                dispatch(setLoadedStatus());
             }).catch(() => {
                 dispatch(serverError())
             })
         })
-    }, [])
+    }, []);
+
 
     const showTickets = tickets.filter((item, i) => i < lengthOfList);
 

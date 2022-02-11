@@ -72,12 +72,22 @@ export default function reducer(state = initialState, action = {}) {
         case 'ADD_TICKETS_DATA':
             return {
                 ...state,
+                tickets: [...action.placeholder]
+            }
+        case 'UPLOAD_TICKETS':
+            return {
+                ...state,
                 tickets: [...state.tickets, ...action.placeholder]
             }
         case 'SERVER_ERROR':
             return {
                 ...state,
                 serverError: true
+            }
+        case 'ALL_TICKETS_LOADED':
+            return {
+                ...state,
+                allTickets: action.placeholder
             }
         default:
             return state;

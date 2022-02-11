@@ -14,7 +14,6 @@ import './App.scss'
 export default function App() {
     const serverStatus = useSelector(state => state.serverError);
     const filters = useSelector(state => state.ticketsFilter.options)
-    const tickets = useSelector(state => state.tickets)
 
     return (
         <main className="app">
@@ -34,7 +33,7 @@ export default function App() {
                                 <TicketSort />
                             </div>
                             {
-                                filters.length !== 0 || tickets.length !== 0 ?
+                                filters.length !== 0 ?
                                     <div className="main__ticket-list">
                                         <TicketList />
                                     </div> :
