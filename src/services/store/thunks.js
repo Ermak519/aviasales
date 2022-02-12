@@ -1,20 +1,18 @@
-import { setLoadingStatus, setSearchID, addTicketsData, setLoadedStatus, allTicketsLoaded, serverError } from './actions'
+import { setSearchID, addTicketsData, setListStatus, allTicketsLoaded, serverError } from './actions'
 import { getSearchID, getTickets } from '../api/kataAviasales';
 
 
-
-export const getTicketsData = () => (dispatch) => {
-    dispatch(setLoadingStatus())
-    getSearchID().then(({ searchId }) => {
-        dispatch(setSearchID(searchId));
-        return searchId
-    }).then((id) => {
-        getTickets(id).then(({ tickets, stop }) => {
-            dispatch(addTicketsData(tickets))
-            dispatch(setLoadedStatus());
-            dispatch(allTicketsLoaded(stop))
-        }).catch(() => {
-            dispatch(serverError())
-        })
-    })
+export const getTicketsData = () => async (dispatch) => {
+    dispatch(setListStatus('loading'));
+    const { searchId } = await getSearchID();
+    dispatch(setSearchID(searchId));
+    try {
+        const { tickets, stop } = await getTickets(searchId);
+        dispatch(addTicketsData(tickets));
+        dispatch(setListStatus('loaded'));
+        dispatch(allTicketsLoaded(stop));
+    } catch (error) {
+        console.log(error)
+        dispatch(serverError());
+    }
 }

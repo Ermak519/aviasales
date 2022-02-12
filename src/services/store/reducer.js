@@ -6,8 +6,8 @@ const initialState = {
         all: true,
         options: ['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки']
     },
-    allTickets: false,
-    ticketListStatus: 'loaded',
+    allTickets: null,
+    listStatus: 'loaded',
     serverError: false,
     lengthOfList: 5,
     tickets: [
@@ -25,11 +25,6 @@ export default function reducer(state = initialState, action = {}) {
             return {
                 ...state,
                 ticketSort: 'fast'
-            }
-        case 'OPTIMAL':
-            return {
-                ...state,
-                ticketSort: 'optimal'
             }
         case 'ALL':
             return {
@@ -49,17 +44,13 @@ export default function reducer(state = initialState, action = {}) {
                     options: [...action.list]
                 }
             }
-        case 'LIST_STATUS_LOADING':
+        case 'LIST_STATUS':
             return {
                 ...state,
-                ticketListStatus: 'loading'
+                listStatus: action.placeholder
             }
-        case 'LIST_STATUS_LOADED':
-            return {
-                ...state,
-                ticketListStatus: 'loaded'
-            }
-        case 'ADD_TICKETS':
+
+        case 'ADD_SHOW_TICKETS':
             return {
                 ...state,
                 lengthOfList: state.lengthOfList + 5

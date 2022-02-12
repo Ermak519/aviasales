@@ -4,7 +4,8 @@ import React, { useEffect } from "react";
 import { List, Button, Spin, Progress } from 'antd';
 import { useSelector, useDispatch } from "react-redux";
 
-import { addTickets, setLoadingStatus, setLoadedStatus, setSearchID, serverError, addTicketsData } from "../../services/store/actions";
+import { allTicketsLoaded, addTickets, setListStatus, setSearchID, serverError, addTicketsData } from "../../services/store/actions";
+import { getTicketsData } from "../../services/store/thunks";
 import { getSearchID, getTickets } from "../../services/api/kataAviasales";
 
 import { Ticket } from '../Ticket';
@@ -15,31 +16,75 @@ import './TicketList.scss'
 export default function TicketList() {
 
     const tickets = useSelector(state => state.tickets);
-    const status = useSelector(state => state.ticketListStatus);
+    const status = useSelector(state => state.listStatus);
     const lengthOfList = useSelector(state => state.lengthOfList);
     const allTickets = useSelector(state => state.allTickets);
+    const ticketSort = useSelector(state => state.ticketSort);
+    const ticketsFilter = useSelector(state => state.ticketsFilter.options);
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
+    useEffect(async () => {
         // dispatch(getTicketsData());
 
-        dispatch(setLoadingStatus())
-        getSearchID().then(({ searchId }) => {
-            dispatch(setSearchID(searchId));
-            return searchId
-        }).then((id) => {
-            getTickets(id).then(({ tickets }) => {
-                dispatch(addTicketsData(tickets))
-                dispatch(setLoadedStatus());
-            }).catch(() => {
-                dispatch(serverError())
-            })
-        })
+        dispatch(setListStatus('loading'));
+        const { searchId } = await getSearchID();
+        dispatch(setSearchID(searchId));
+        try {
+            const { tickets, stop } = await getTickets(searchId);
+            dispatch(addTicketsData(tickets));
+            dispatch(setListStatus('loaded'));
+            dispatch(allTicketsLoaded(stop));
+        } catch (error) {
+            console.log(error)
+            dispatch(serverError());
+        }
+
+        // dispatch(setLoadingStatus())
+        // getSearchID().then(({ searchId }) => {
+        //     dispatch(setSearchID(searchId));
+        //     return searchId
+        // }).then((id) => {
+        //     getTickets(id).then(({ tickets }) => {
+        //         dispatch(addTicketsData(tickets))
+        //         dispatch(setLoadedStatus());
+        //     }).catch(() => {
+        //         dispatch(serverError())
+        //     })
+        // })
     }, []);
 
+    const arrTickets = [...tickets].filter((item) => {
+        const { segments } = item;
+        const [obj1, obj2] = segments;
+        const transfers1 = obj1.stops.length;
+        const transfers2 = obj2.stops.length;
+        if (ticketsFilter.includes('Без пересадок')) {
+            return transfers1 === 0 || transfers2 === 0;
+        };
+        if (ticketsFilter.includes('1 пересадка')) {
+            return transfers1 === 1 || transfers2 === 1;
+        };
+        if (ticketsFilter.includes('2 пересадки')) {
+            return transfers1 === 2 || transfers2 === 2;
+        };
+        if (ticketsFilter.includes('3 пересадки')) {
+            return transfers1 === 3 || transfers2 === 3;
+        };
+    }).sort((a, b) => {
+        if (ticketSort === 'cheep') return a.price - b.price;
+        if (ticketSort === 'fast') {
+            const { segments: segmentsA } = a;
+            const [obj1A, obj2A] = segmentsA;
+            const durationA = obj1A.duration + obj2A.duration;
+            const { segments: segmentsB } = b;
+            const [obj1B, obj2B] = segmentsB;
+            const durationB = obj1B.duration + obj2B.duration;
+            return durationA - durationB;
+        };
+    });
 
-    const showTickets = tickets.filter((item, i) => i < lengthOfList);
+    const showTickets = arrTickets.filter((item, i) => i < lengthOfList)
 
     return (
         status !== 'loading' ?

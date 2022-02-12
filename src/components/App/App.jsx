@@ -53,7 +53,7 @@ export default function App() {
                     <Result
                         status="500"
                         title="500"
-                        subTitle="Sorry, something went wrong."
+                        subTitle="Ошибка на сервере, перезагрузите страницу"
                     />
             }
         </main>
