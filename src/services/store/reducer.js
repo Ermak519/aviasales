@@ -6,9 +6,9 @@ const initialState = {
         all: true,
         options: ['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки']
     },
+    ticketsProgress: 10,
     allTickets: null,
     listStatus: 'loaded',
-    serverError: false,
     lengthOfList: 5,
     tickets: [
     ]
@@ -70,10 +70,10 @@ export default function reducer(state = initialState, action = {}) {
                 ...state,
                 tickets: [...state.tickets, ...action.placeholder]
             }
-        case 'SERVER_ERROR':
+        case 'UPLOAD_PROGRESS':
             return {
                 ...state,
-                serverError: true
+                ticketsProgress: state.ticketsProgress + 7.5
             }
         case 'ALL_TICKETS_LOADED':
             return {

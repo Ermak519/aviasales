@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { List, Button, Spin, Progress } from 'antd';
 import { useSelector, useDispatch } from "react-redux";
 
-import { allTicketsLoaded, addTickets, setListStatus, setSearchID, serverError, addTicketsData } from "../../services/store/actions";
+import { allTicketsLoaded, addTickets, setListStatus, setSearchID, addTicketsData, uploadTickets, uploadProgress } from "../../services/store/actions";
 import { getTicketsData } from "../../services/store/thunks";
 import { getSearchID, getTickets } from "../../services/api/kataAviasales";
 
@@ -20,6 +20,8 @@ export const TicketList = () => {
     const allTickets = useSelector(state => state.allTickets);
     const ticketSort = useSelector(state => state.ticketSort);
     const ticketsFilter = useSelector(state => state.ticketsFilter.options);
+    const searchId = useSelector(state => state.searchID);
+    const ticketsProgress = useSelector(state => state.ticketsProgress);
 
     const dispatch = useDispatch();
 
@@ -38,20 +40,26 @@ export const TicketList = () => {
             console.log(error)
             dispatch(serverError());
         }
-
-        // dispatch(setLoadingStatus())
-        // getSearchID().then(({ searchId }) => {
-        //     dispatch(setSearchID(searchId));
-        //     return searchId
-        // }).then((id) => {
-        //     getTickets(id).then(({ tickets }) => {
-        //         dispatch(addTicketsData(tickets))
-        //         dispatch(setLoadedStatus());
-        //     }).catch(() => {
-        //         dispatch(serverError())
-        //     })
-        // })
     }, []);
+
+    useEffect(() => {
+        if (!allTickets && searchId !== null) {
+            const intervalQuery = setInterval(async () => {
+                try {
+                    const { tickets, stop } = await getTickets(searchId);
+                    dispatch(uploadTickets(tickets));
+                    dispatch(allTicketsLoaded(stop));
+                    dispatch(uploadProgress());
+                } catch (error) {
+                    const { tickets, stop } = await getTickets(searchId);
+                    dispatch(uploadTickets(tickets));
+                    dispatch(uploadProgress());
+                    dispatch(allTicketsLoaded(stop));
+                }
+            }, 3000);
+            return () => clearInterval(intervalQuery)
+        }
+    })
 
     const arrTickets = [...tickets].filter((item) => {
         const { segments } = item;
@@ -88,7 +96,7 @@ export const TicketList = () => {
     return (
         status !== 'loading' ?
             <>
-                {!allTickets ? <Progress status="active" percent={50} showInfo={false} /> : null}
+                {!allTickets ? <Progress className="list-progress" status="active" percent={ticketsProgress} showInfo={false} /> : null}
                 <List
                     grid={{ gutter: 16, column: 1 }}
                     dataSource={showTickets}

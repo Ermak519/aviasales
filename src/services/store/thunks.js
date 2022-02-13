@@ -1,4 +1,6 @@
-import { setSearchID, addTicketsData, setListStatus, allTicketsLoaded, serverError } from './actions'
+import { useSelector } from "react-redux";
+
+import { setSearchID, addTicketsData, uploadTickets, setListStatus, allTicketsLoaded } from './actions';
 import { getSearchID, getTickets } from '../api/kataAviasales';
 
 
@@ -12,7 +14,19 @@ export const getTicketsData = () => async (dispatch) => {
         dispatch(setListStatus('loaded'));
         dispatch(allTicketsLoaded(stop));
     } catch (error) {
-        console.log(error)
-        dispatch(serverError());
+        console.log(error);
     }
+}
+
+export const uploadNewTickets = () => async (dispatch) => {
+    const searchId = useSelector(state => state.searchID);
+
+    try {
+        const { tickets, stop } = await getTickets(searchId);
+        dispatch(uploadTickets(tickets));
+        dispatch(allTicketsLoaded(stop));
+    } catch (error) {
+        console.log(error);
+    }
+
 }
