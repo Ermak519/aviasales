@@ -6,7 +6,7 @@ import { cheeper, faster } from '../../services/store/actions'
 import './TicketSort.scss'
 
 
-export default function TicketSort() {
+export const TicketSort = () => {
 
   const value = useSelector(state => state.ticketSort)
   const dispatch = useDispatch()

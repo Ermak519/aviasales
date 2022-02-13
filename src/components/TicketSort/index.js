@@ -1,1 +1,1 @@
-export { default as TicketSort } from './TicketSort.jsx'
+export { TicketSort } from './TicketSort.jsx'

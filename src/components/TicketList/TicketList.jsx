@@ -12,8 +12,7 @@ import { Ticket } from '../Ticket';
 
 import './TicketList.scss'
 
-
-export default function TicketList() {
+export const TicketList = () => {
 
     const tickets = useSelector(state => state.tickets);
     const status = useSelector(state => state.listStatus);

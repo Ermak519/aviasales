@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { allTrans, checkGroup } from "../../services/store/actions";
 import './TicketsFilter.scss';
 
-export default function TicketsFilter() {
+export const TicketsFilter = () => {
 
     const labels = useSelector(state => state.ticketsFilter.labels);
     const options = useSelector(state => state.ticketsFilter.options);

@@ -11,7 +11,7 @@ import Plane from './plane.svg'
 import './App.scss'
 
 
-export default function App() {
+export const App = () => {
     const serverStatus = useSelector(state => state.serverError);
     const filters = useSelector(state => state.ticketsFilter.options)
 

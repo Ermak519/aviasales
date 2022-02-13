@@ -1,1 +1,1 @@
-export {default as TicketList} from './TicketList.jsx'
+export { TicketList } from './TicketList.jsx'

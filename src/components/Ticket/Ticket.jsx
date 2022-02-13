@@ -4,7 +4,7 @@ import { List, Card } from 'antd'
 
 import './Ticket.scss'
 
-export default function Ticket({ ticket }) {
+export const Ticket = ({ ticket }) => {
     const { price, carrier, segments } = ticket;
     const [departure, arrival] = segments;
 
