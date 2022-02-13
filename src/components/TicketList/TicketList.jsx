@@ -38,7 +38,6 @@ export const TicketList = () => {
             dispatch(allTicketsLoaded(stop));
         } catch (error) {
             console.log(error)
-            dispatch(serverError());
         }
     }, []);
 

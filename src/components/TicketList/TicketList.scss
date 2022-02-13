@@ -18,4 +18,12 @@
   }
 }
 
+.ant-progress-line {
+  &.list-progress{
+    position: sticky;
+    top: 10px;
+    z-index: 1;
+  }
+}
+
 

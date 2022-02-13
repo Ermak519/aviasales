@@ -73,7 +73,7 @@ export default function reducer(state = initialState, action = {}) {
         case 'UPLOAD_PROGRESS':
             return {
                 ...state,
-                ticketsProgress: state.ticketsProgress + 7.5
+                ticketsProgress: state.ticketsProgress + 6
             }
         case 'ALL_TICKETS_LOADED':
             return {
