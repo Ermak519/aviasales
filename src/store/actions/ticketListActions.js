@@ -1,19 +1,3 @@
-/*eslint-disable */
-
-//filter
-
-export const allTrans = () => ({ type: 'ALL' });
-
-export const checkGroup = (items) => ({ type: 'GROUP', list: items })
-
-// sort
-
-export const cheeper = () => ({ type: 'CHEEP' });
-
-export const faster = () => ({ type: 'FAST' });
-
-// tickets data 
-
 export const addTickets = () => ({ type: 'ADD_SHOW_TICKETS' });
 
 export const setSearchID = (value) => ({ type: 'SET_SEARCH_ID', placeholder: value });

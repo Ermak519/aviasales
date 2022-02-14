@@ -2,13 +2,13 @@ import React from "react";
 import { Radio } from 'antd';
 import { useDispatch, useSelector } from "react-redux";
 
-import { cheeper, faster } from '../../services/store/actions'
+import { cheeper, faster } from '../../store/actions/sortActions'
 import './TicketSort.scss'
 
 
 export const TicketSort = () => {
 
-  const value = useSelector(state => state.ticketSort)
+  const value = useSelector(state => state.sortReducer.ticketSort)
   const dispatch = useDispatch()
 
   return (

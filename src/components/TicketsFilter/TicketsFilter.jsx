@@ -1,16 +1,14 @@
-/* eslint-disable */
-
 import React from "react";
 import { Card, Checkbox } from 'antd';
 import { useDispatch, useSelector } from "react-redux";
-import { allTrans, checkGroup } from "../../services/store/actions";
+import { allTrans, checkGroup } from "../../store/actions/filterActions";
 import './TicketsFilter.scss';
 
 export const TicketsFilter = () => {
 
-    const labels = useSelector(state => state.ticketsFilter.labels);
-    const options = useSelector(state => state.ticketsFilter.options);
-    const all = useSelector(state => state.ticketsFilter.all)
+    const labels = useSelector(state => state.filterReducer.labels);
+    const options = useSelector(state => state.filterReducer.options);
+    const all = useSelector(state => state.filterReducer.all)
 
     const dispatch = useDispatch()
 

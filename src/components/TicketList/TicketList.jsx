@@ -1,12 +1,10 @@
-/*eslint-disable */
-
 import React, { useEffect } from "react";
 import { List, Button, Spin, Progress } from 'antd';
 import { useSelector, useDispatch } from "react-redux";
 
-import { allTicketsLoaded, addTickets, setListStatus, setSearchID, addTicketsData, uploadTickets, uploadProgress } from "../../services/store/actions";
-import { getTicketsData } from "../../services/store/thunks";
-import { getSearchID, getTickets } from "../../services/api/kataAviasales";
+import { addTickets } from "../../store/actions/ticketListActions";
+
+import { getTicketsData, uploadNewTickets } from "../../store/middlewares/thunks";
 
 import { Ticket } from '../Ticket';
 
@@ -14,48 +12,23 @@ import './TicketList.scss'
 
 export const TicketList = () => {
 
-    const tickets = useSelector(state => state.tickets);
-    const status = useSelector(state => state.listStatus);
-    const lengthOfList = useSelector(state => state.lengthOfList);
-    const allTickets = useSelector(state => state.allTickets);
-    const ticketSort = useSelector(state => state.ticketSort);
-    const ticketsFilter = useSelector(state => state.ticketsFilter.options);
-    const searchId = useSelector(state => state.searchID);
-    const ticketsProgress = useSelector(state => state.ticketsProgress);
+    const { tickets, status, lengthOfList, allTickets, searchId, ticketsProgress } = useSelector(state => state.ticketListReducer);
+
+    const ticketSort = useSelector(state => state.sortReducer.ticketSort);
+
+    const ticketsFilter = useSelector(state => state.filterReducer.options);
 
     const dispatch = useDispatch();
 
-    useEffect(async () => {
-        // dispatch(getTicketsData());
-
-        dispatch(setListStatus('loading'));
-        const { searchId } = await getSearchID();
-        dispatch(setSearchID(searchId));
-        try {
-            const { tickets, stop } = await getTickets(searchId);
-            dispatch(addTicketsData(tickets));
-            dispatch(setListStatus('loaded'));
-            dispatch(allTicketsLoaded(stop));
-        } catch (error) {
-            console.log(error)
-        }
-    }, []);
+    useEffect(() => {
+        dispatch(getTicketsData())
+    }, [dispatch]);
 
     useEffect(() => {
         if (!allTickets && searchId !== null) {
-            const intervalQuery = setInterval(async () => {
-                try {
-                    const { tickets, stop } = await getTickets(searchId);
-                    dispatch(uploadTickets(tickets));
-                    dispatch(allTicketsLoaded(stop));
-                    dispatch(uploadProgress());
-                } catch (error) {
-                    const { tickets, stop } = await getTickets(searchId);
-                    dispatch(uploadTickets(tickets));
-                    dispatch(uploadProgress());
-                    dispatch(allTicketsLoaded(stop));
-                }
-            }, 3000);
+            const intervalQuery = setInterval(() => {
+                uploadNewTickets(searchId)
+            }, 1000);
             return () => clearInterval(intervalQuery)
         }
     })

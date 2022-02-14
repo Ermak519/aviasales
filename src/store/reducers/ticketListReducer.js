@@ -1,11 +1,5 @@
 const initialState = {
     searchID: null,
-    ticketSort: 'cheep',
-    ticketsFilter: {
-        labels: ['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки'],
-        all: true,
-        options: ['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки']
-    },
     ticketsProgress: 10,
     allTickets: null,
     listStatus: 'loaded',
@@ -14,36 +8,8 @@ const initialState = {
     ]
 }
 
-export default function reducer(state = initialState, action = {}) {
+export const ticketListReducer = (state = initialState, action = {}) => {
     switch (action.type) {
-        case 'CHEEP':
-            return {
-                ...state,
-                ticketSort: 'cheep'
-            }
-        case 'FAST':
-            return {
-                ...state,
-                ticketSort: 'fast'
-            }
-        case 'ALL':
-            return {
-                ...state,
-                ticketsFilter: {
-                    ...state.ticketsFilter,
-                    all: !state.ticketsFilter.all,
-                    options: !state.ticketsFilter.all ? [...state.ticketsFilter.labels] : []
-                }
-            }
-        case 'GROUP':
-            return {
-                ...state,
-                ticketsFilter: {
-                    ...state.ticketsFilter,
-                    all: state.ticketsFilter.labels.length === action.list.length,
-                    options: [...action.list]
-                }
-            }
         case 'LIST_STATUS':
             return {
                 ...state,
@@ -84,7 +50,3 @@ export default function reducer(state = initialState, action = {}) {
             return state;
     }
 }
-
-
-
-
