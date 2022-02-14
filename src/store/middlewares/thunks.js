@@ -19,17 +19,21 @@ export const getTicketsData = () => async (dispatch) => {
     }
 }
 
-export const uploadNewTickets = (searchId) => async (dispatch) => {
-    try {
-        const { tickets, stop } = await getTickets(searchId);
-        dispatch(uploadTickets(tickets));
-        dispatch(allTicketsLoaded(stop));
-        dispatch(uploadProgress());
-    } catch (error) {
-        const { tickets, stop } = await getTickets(searchId);
-        dispatch(uploadTickets(tickets));
-        dispatch(uploadProgress());
-        dispatch(allTicketsLoaded(stop));
-    }
+export const uploadNewTickets = (searchId) => {
+    const id = searchId;
 
+    return async (dispatch) => {
+        try {
+            const { tickets, stop } = await getTickets(id);
+            dispatch(uploadTickets(tickets));
+            dispatch(allTicketsLoaded(stop));
+            dispatch(uploadProgress());
+        } catch (error) {
+            const { tickets, stop } = await getTickets(searchId);
+            dispatch(uploadTickets(tickets));
+            dispatch(uploadProgress());
+            dispatch(allTicketsLoaded(stop));
+        }
+
+    }
 }

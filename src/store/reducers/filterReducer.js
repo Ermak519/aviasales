@@ -9,20 +9,14 @@ export const filterReducer = (state = initialState, action = {}) => {
         case 'ALL':
             return {
                 ...state,
-                ticketsFilter: {
-                    ...state.ticketsFilter,
-                    all: !state.ticketsFilter.all,
-                    options: !state.ticketsFilter.all ? [...state.ticketsFilter.labels] : []
-                }
+                all: !state.all,
+                options: !state.all ? [...state.labels] : []
             }
         case 'GROUP':
             return {
                 ...state,
-                ticketsFilter: {
-                    ...state.ticketsFilter,
-                    all: state.ticketsFilter.labels.length === action.list.length,
-                    options: [...action.list]
-                }
+                all: state.labels.length === action.list.length,
+                options: [...action.list]
             }
         default:
             return state;

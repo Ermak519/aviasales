@@ -6,9 +6,8 @@ import './TicketsFilter.scss';
 
 export const TicketsFilter = () => {
 
-    const labels = useSelector(state => state.filterReducer.labels);
-    const options = useSelector(state => state.filterReducer.options);
-    const all = useSelector(state => state.filterReducer.all)
+    const { labels, options } = useSelector(state => state.filterReducer);
+    const { all } = useSelector(state => state.filterReducer)
 
     const dispatch = useDispatch()
 

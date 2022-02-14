@@ -8,11 +8,11 @@ import './TicketSort.scss'
 
 export const TicketSort = () => {
 
-  const value = useSelector(state => state.sortReducer.ticketSort)
+  const { ticketSort } = useSelector(state => state.sortReducer)
   const dispatch = useDispatch()
 
   return (
-    <Radio.Group className="ticket-filter" defaultValue={value} buttonStyle="solid" >
+    <Radio.Group className="ticket-filter" defaultValue={ticketSort} buttonStyle="solid" >
       <Radio.Button
         onClick={() => { dispatch(cheeper()) }}
         className="ticket-filter__item"

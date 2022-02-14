@@ -15,7 +15,6 @@ export const ticketListReducer = (state = initialState, action = {}) => {
                 ...state,
                 listStatus: action.placeholder
             }
-
         case 'ADD_SHOW_TICKETS':
             return {
                 ...state,

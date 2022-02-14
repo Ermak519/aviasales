@@ -12,11 +12,11 @@ import './TicketList.scss'
 
 export const TicketList = () => {
 
-    const { tickets, status, lengthOfList, allTickets, searchId, ticketsProgress } = useSelector(state => state.ticketListReducer);
+    const { tickets, listStatus, lengthOfList, allTickets, searchId, ticketsProgress } = useSelector(state => state.ticketListReducer);
 
-    const ticketSort = useSelector(state => state.sortReducer.ticketSort);
+    const { ticketSort } = useSelector(state => state.sortReducer);
 
-    const ticketsFilter = useSelector(state => state.filterReducer.options);
+    const { options, labels } = useSelector(state => state.filterReducer);
 
     const dispatch = useDispatch();
 
@@ -25,48 +25,39 @@ export const TicketList = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        if (!allTickets && searchId !== null) {
+        if (!allTickets && searchId) {
             const intervalQuery = setInterval(() => {
-                uploadNewTickets(searchId)
-            }, 1000);
+                dispatch(uploadNewTickets(searchId))
+            }, 3000);
             return () => clearInterval(intervalQuery)
         }
     })
 
+    // if (activeFilter.length === 0 || activeFilter.length === filterList.length) {
+    //     filteredList = this.state.searchLists;
+    // } else {
+    //     filteredList = this.state.searchLists.filter(item =>
+    //         this.state.activeFilter.includes(item.type)
+    //     );
+    // }
+
     const arrTickets = [...tickets].filter((item) => {
-        const { segments } = item;
-        const [obj1, obj2] = segments;
-        const transfers1 = obj1.stops.length;
-        const transfers2 = obj2.stops.length;
-        if (ticketsFilter.includes('Без пересадок')) {
-            return transfers1 === 0 || transfers2 === 0;
+        const transfers1 = item.segments[0].stops.length;
+        const transfers2 = item.segments[1].stops.length;
+
+        if (labels.length === options.length) {
+            return transfers1 || transfers2;
         };
-        if (ticketsFilter.includes('1 пересадка')) {
-            return transfers1 === 1 || transfers2 === 1;
-        };
-        if (ticketsFilter.includes('2 пересадки')) {
-            return transfers1 === 2 || transfers2 === 2;
-        };
-        if (ticketsFilter.includes('3 пересадки')) {
-            return transfers1 === 3 || transfers2 === 3;
-        };
+
     }).sort((a, b) => {
         if (ticketSort === 'cheep') return a.price - b.price;
-        if (ticketSort === 'fast') {
-            const { segments: segmentsA } = a;
-            const [obj1A, obj2A] = segmentsA;
-            const durationA = obj1A.duration + obj2A.duration;
-            const { segments: segmentsB } = b;
-            const [obj1B, obj2B] = segmentsB;
-            const durationB = obj1B.duration + obj2B.duration;
-            return durationA - durationB;
-        };
+        return (a.segments[0].duration + a.segments[1].duration) - (b.segments[0].duration + b.segments[1].duration)
     });
 
     const showTickets = arrTickets.filter((item, i) => i < lengthOfList)
 
     return (
-        status !== 'loading' ?
+        listStatus !== 'loading' ?
             <>
                 {!allTickets ? <Progress className="list-progress" status="active" percent={ticketsProgress} showInfo={false} /> : null}
                 <List

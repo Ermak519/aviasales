@@ -11,7 +11,6 @@ export const Ticket = ({ ticket }) => {
     const travelTime = (duration) => {
         const hours = Math.floor(duration / 60);
         const mins = duration - hours * 60;
-
         return `${hours}ч ${mins}м`
     }
 
@@ -99,7 +98,6 @@ export const Ticket = ({ ticket }) => {
                     </List.Item>
                 )}
             />
-
             <List
                 grid={{ gutter: 16, column: 3 }}
                 dataSource={arrivalData}
