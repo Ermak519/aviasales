@@ -1,3 +1,3 @@
 # Aviasales, pet-project
 
-[Aviasales](https://github.com/facebook/create-react-app).
+[Aviasales](https://aviasales-livid.vercel.app/).

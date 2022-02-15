@@ -1,44 +1,44 @@
 import {
-    uploadTickets,
-    addTicketsData,
-    setSearchID,
-    uploadProgress,
-    setListStatus,
-    allTicketsLoaded,
+  uploadTickets,
+  addTicketsData,
+  setSearchID,
+  uploadProgress,
+  setListStatus,
+  allTicketsLoaded,
 } from '../actions/ticketListActions';
 import { getTickets, getSearchID } from '../../api/kataAviasales';
 
 export const getTicketsData = () => async (dispatch) => {
-    dispatch(setListStatus('loading'));
-    const { searchId } = await getSearchID();
-    dispatch(setSearchID(searchId));
-    let ticketsAll, stopStatus;
-    try {
-        const { tickets, stop } = await getTickets(searchId);
-        ticketsAll = tickets;
-        stopStatus = stop;
-    } catch {
-        const { tickets, stop } = await getTickets(searchId);
-        ticketsAll = tickets;
-        stopStatus = stop;
-    }
-    dispatch(addTicketsData(ticketsAll));
-    dispatch(setListStatus('loaded'));
-    dispatch(allTicketsLoaded(stopStatus));
+  dispatch(setListStatus('loading'));
+  const { searchId } = await getSearchID();
+  dispatch(setSearchID(searchId));
+  let ticketsAll, stopStatus;
+  try {
+    const { tickets, stop } = await getTickets(searchId);
+    ticketsAll = tickets;
+    stopStatus = stop;
+  } catch {
+    const { tickets, stop } = await getTickets(searchId);
+    ticketsAll = tickets;
+    stopStatus = stop;
+  }
+  dispatch(addTicketsData(ticketsAll));
+  dispatch(setListStatus('loaded'));
+  dispatch(allTicketsLoaded(stopStatus));
 };
 
 export const uploadNewTickets = (searchId) => async (dispatch) => {
-    let ticketsAll, stopStatus;
-    try {
-        const { tickets, stop } = await getTickets(searchId);
-        ticketsAll = tickets;
-        stopStatus = stop;
-    } catch {
-        const { tickets, stop } = await getTickets(searchId);
-        ticketsAll = tickets;
-        stopStatus = stop;
-    }
-    dispatch(uploadTickets(ticketsAll));
-    dispatch(uploadProgress());
-    dispatch(allTicketsLoaded(stopStatus));
+  let ticketsAll, stopStatus;
+  try {
+    const { tickets, stop } = await getTickets(searchId);
+    ticketsAll = tickets;
+    stopStatus = stop;
+  } catch {
+    const { tickets, stop } = await getTickets(searchId);
+    ticketsAll = tickets;
+    stopStatus = stop;
+  }
+  dispatch(uploadTickets(ticketsAll));
+  dispatch(uploadProgress());
+  dispatch(allTicketsLoaded(stopStatus));
 };

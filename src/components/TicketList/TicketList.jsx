@@ -19,6 +19,13 @@ export const TicketList = () => {
 
   const { options, labels } = useSelector((state) => state.filterReducer);
 
+  const numberOfStops = {
+    'Без пересадок': 0,
+    '1 пересадка': 1,
+    '2 пересадки': 2,
+    '3 пересадки': 3,
+  };
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,10 +46,14 @@ export const TicketList = () => {
       const transfers = item.segments[0].stops.length + item.segments[1].stops.length;
 
       if (labels.length === options.length) return transfers <= 3;
+
+      return options.some((option) => numberOfStops[option] === transfers);
     })
-    .sort((a, b) => {
-      if (ticketSort === 'cheep') return a.price - b.price;
-      return a.segments[0].duration + a.segments[1].duration - (b.segments[0].duration + b.segments[1].duration);
+    .sort((obj1, obj2) => {
+      if (ticketSort === 'cheep') return obj1.price - obj2.price;
+      return (
+        obj1.segments[0].duration + obj1.segments[1].duration - (obj2.segments[0].duration + obj2.segments[1].duration)
+      );
     });
 
   const showTickets = arrTickets.filter((item, i) => i < lengthOfList);
