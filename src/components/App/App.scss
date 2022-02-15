@@ -22,23 +22,23 @@
   display: flex;
   padding-top: 20px;
 
-  &__app{
+  &__app {
     width: 515px;
   }
 
   &__ticket-filter {
     padding-bottom: 10px;
     display: flex;
-    .ticket-filter{
+    .ticket-filter {
       display: flex;
-      &__item{
+      &__item {
         align-items: center;
         text-align: center;
       }
     }
   }
 
-  &__ticket-list{
+  &__ticket-list {
     display: flex;
     justify-content: center;
     flex-direction: column;

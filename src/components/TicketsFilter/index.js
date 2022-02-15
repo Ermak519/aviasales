@@ -1,1 +1,1 @@
-export { TicketsFilter } from './TicketsFilter.jsx'
+export { TicketsFilter } from './TicketsFilter.jsx';

@@ -6,12 +6,10 @@ import thunk from 'redux-thunk';
 import { rootReducer } from './store/reducers';
 import { App } from './components/App';
 
-const store = createStore(combineReducers(rootReducer()),
-  compose(
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-)
+const store = createStore(
+  combineReducers(rootReducer()),
+  compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+);
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,4 +19,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-

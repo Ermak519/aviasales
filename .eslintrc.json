@@ -23,6 +23,7 @@
         "jest": true
     },
     "rules": {
+        "one-var": 0,
         "array-callback-return": 0,
         "consistent-return": 0,
         "no-underscore-dangle": 0,

@@ -1,11 +1,11 @@
-.ant-btn{
+.ant-btn {
   &.list-button {
     width: 502px;
     height: 50px;
     margin-bottom: 20px;
-    border-radius:  5px;
-  
-    font-family: "Open Sans";
+    border-radius: 5px;
+
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 600;
     font-size: 12px;
@@ -14,16 +14,14 @@
     text-align: center;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 }
 
 .ant-progress-line {
-  &.list-progress{
+  &.list-progress {
     position: sticky;
     top: 10px;
     z-index: 1;
   }
 }
-
-

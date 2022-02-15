@@ -1,1 +1,1 @@
-export { TicketSort } from './TicketSort.jsx'
+export { TicketSort } from './TicketSort.jsx';
