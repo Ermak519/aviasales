@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { List, Button, Spin, Progress } from 'antd';
+import { List, Button, Spin, Progress, BackTop } from 'antd';
+import { ArrowUpOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { addTickets } from '../../store/actions/ticketListActions';
@@ -58,8 +59,22 @@ export const TicketList = () => {
 
   const showTickets = arrTickets.filter((item, i) => i < lengthOfList);
 
+  const BackTopStyle = {
+    height: 40,
+    width: 40,
+    lineHeight: '40px',
+    borderRadius: 4,
+    backgroundColor: '#1088e9',
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 14,
+  };
+
   return listStatus !== 'loading' ? (
     <>
+      <BackTop>
+        <div style={BackTopStyle}><ArrowUpOutlined /></div>
+      </BackTop>
       {!allTickets ? (
         <Progress className="list-progress" status="active" percent={ticketsProgress} showInfo={false} />
       ) : null}
