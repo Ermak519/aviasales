@@ -72,7 +72,7 @@ export const Ticket = ({ ticket }) => {
       <div className="ticket__header">
         <div className="ticket__price">{price}</div>
         <div className="ticket__logo">
-          <img src={`https://pics.avs.io/99/36/{${carrier}}.png`} alt="company-logo" />
+          <img src={`https://pics.avs.io/99/36/{${carrier}}.png`} alt="carrier" />
         </div>
       </div>
       <List

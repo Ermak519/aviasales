@@ -5,8 +5,8 @@ import { TicketsFilter } from '../TicketsFilter';
 import { TicketSort } from '../TicketSort';
 import { TicketList } from '../TicketList';
 
-import Logo from './logo.svg';
-import Plane from './plane.svg';
+import Logo from '../../assets/img/logo.svg';
+import Plane from '../../assets/img/plane.svg';
 import './App.scss';
 
 export const App = () => {

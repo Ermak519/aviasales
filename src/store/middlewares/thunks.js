@@ -6,7 +6,7 @@ import {
   setListStatus,
   allTicketsLoaded,
 } from '../actions/ticketListActions';
-import { getTickets, getSearchID } from '../../api/kataAviasales';
+import { getTickets, getSearchID } from '../../api';
 
 export const getTicketsData = () => async (dispatch) => {
   dispatch(setListStatus('loading'));

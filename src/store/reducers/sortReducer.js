@@ -1,13 +1,13 @@
 const initialState = {
-  ticketSort: 'cheep',
+  ticketSort: 'cheap',
 };
 
 export const sortReducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case 'CHEEP':
+    case 'CHEAP':
       return {
         ...state,
-        ticketSort: 'cheep',
+        ticketSort: 'cheap',
       };
     case 'FAST':
       return {

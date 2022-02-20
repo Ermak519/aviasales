@@ -51,7 +51,7 @@ export const TicketList = () => {
       return options.some((option) => numberOfStops[option] === transfers);
     })
     .sort((obj1, obj2) => {
-      if (ticketSort === 'cheep') return obj1.price - obj2.price;
+      if (ticketSort === 'cheap') return obj1.price - obj2.price;
       return (
         obj1.segments[0].duration + obj1.segments[1].duration - (obj2.segments[0].duration + obj2.segments[1].duration)
       );
