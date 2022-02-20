@@ -11,7 +11,7 @@ import { Ticket } from '../Ticket';
 
 import './TicketList.scss';
 
-export const TicketList = () => {
+const TicketList = () => {
   const { tickets, listStatus, lengthOfList, allTickets, searchId, ticketsProgress } = useSelector(
     (state) => state.ticketListReducer
   );
@@ -101,3 +101,5 @@ export const TicketList = () => {
     <Spin className="list-spin" size="large" />
   );
 };
+
+export default TicketList;

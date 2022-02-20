@@ -1,1 +1,1 @@
-export { Ticket } from './Ticket.jsx';
+export {default as Ticket } from './Ticket.jsx';

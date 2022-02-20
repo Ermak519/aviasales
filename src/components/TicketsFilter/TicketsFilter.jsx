@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { allTrans, checkGroup } from '../../store/actions/filterActions';
 import './TicketsFilter.scss';
 
-export const TicketsFilter = () => {
+const TicketsFilter = () => {
   const { labels, options } = useSelector((state) => state.filterReducer);
   const { all } = useSelector((state) => state.filterReducer);
 
@@ -32,3 +32,5 @@ export const TicketsFilter = () => {
     </Card>
   );
 };
+
+export default TicketsFilter;

@@ -4,7 +4,7 @@ import { List, Card } from 'antd';
 
 import './Ticket.scss';
 
-export const Ticket = ({ ticket }) => {
+const Ticket = ({ ticket }) => {
   const { price, carrier, segments } = ticket;
   const [departure, arrival] = segments;
 
@@ -110,3 +110,5 @@ Ticket.defaultProps = {
 Ticket.propTypes = {
   ticket: propTypes.object,
 };
+
+export default Ticket;

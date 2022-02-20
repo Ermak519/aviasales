@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { cheeper, faster } from '../../store/actions/sortActions';
 import './TicketSort.scss';
 
-export const TicketSort = () => {
+const TicketSort = () => {
   const { ticketSort } = useSelector((state) => state.sortReducer);
   const dispatch = useDispatch();
 
@@ -34,3 +34,5 @@ export const TicketSort = () => {
     </Radio.Group>
   );
 };
+
+export default TicketSort;

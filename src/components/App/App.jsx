@@ -9,7 +9,7 @@ import Logo from '../../assets/img/logo.svg';
 import Plane from '../../assets/img/plane.svg';
 import './App.scss';
 
-export const App = () => {
+const App = () => {
   const { options } = useSelector((state) => state.filterReducer);
 
   return (
@@ -45,3 +45,5 @@ export const App = () => {
     </main>
   );
 };
+
+export default App;
