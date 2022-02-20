@@ -73,11 +73,10 @@ const TicketList = () => {
   return listStatus !== 'loading' ? (
     <>
       <BackTop>
-        <div style={BackTopStyle}><ArrowUpOutlined /></div>
+        <div style={BackTopStyle}>
+          <ArrowUpOutlined />
+        </div>
       </BackTop>
-      {!allTickets ? (
-        <Progress className="list-progress" status="active" percent={ticketsProgress} showInfo={false} />
-      ) : null}
       <List
         grid={{ gutter: 16, column: 1 }}
         dataSource={showTickets}
@@ -98,7 +97,10 @@ const TicketList = () => {
       </Button>
     </>
   ) : (
-    <Spin className="list-spin" size="large" />
+    <>
+      <Progress className="list-progress" status="active" percent={ticketsProgress} showInfo={false} />
+      <Spin className="list-spin" size="large" />
+    </>
   );
 };
 

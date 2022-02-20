@@ -39,6 +39,11 @@ export const ticketListReducer = (state = initialState, action = {}) => {
         ...state,
         ticketsProgress: state.ticketsProgress + 6,
       };
+    case 'CLEAR_PROGRESS':
+      return {
+        ...state,
+        ticketsProgress: 10,
+      };
     case 'ALL_TICKETS_LOADED':
       return {
         ...state,

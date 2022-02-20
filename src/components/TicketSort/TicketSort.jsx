@@ -16,7 +16,7 @@ const TicketSort = () => {
           dispatch(cheeper());
         }}
         className="ticket-filter__item"
-        value="cheep"
+        value="cheap"
         style={{ width: 255, borderTopLeftRadius: 5, borderBottomLeftRadius: 5, height: 50 }}
       >
         Самый дешевый

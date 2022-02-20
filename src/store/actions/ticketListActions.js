@@ -8,6 +8,8 @@ export const uploadTickets = (value) => ({ type: 'UPLOAD_TICKETS', placeholder: 
 
 export const uploadProgress = () => ({ type: 'UPLOAD_PROGRESS' });
 
+export const clearLoadProgress = () => ({ type: 'CLEAR_PROGRESS' });
+
 export const setListStatus = (status) => ({ type: 'LIST_STATUS', placeholder: status });
 
 export const allTicketsLoaded = (value) => ({ type: 'ALL_TICKETS_LOADED', placeholder: value });

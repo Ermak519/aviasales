@@ -3,6 +3,7 @@ import {
   addTicketsData,
   setSearchID,
   uploadProgress,
+  clearLoadProgress,
   setListStatus,
   allTicketsLoaded,
 } from '../actions/ticketListActions';
@@ -23,7 +24,6 @@ export const getTicketsData = () => async (dispatch) => {
     stopStatus = stop;
   }
   dispatch(addTicketsData(ticketsAll));
-  dispatch(setListStatus('loaded'));
   dispatch(allTicketsLoaded(stopStatus));
 };
 
@@ -38,6 +38,11 @@ export const uploadNewTickets = (searchId) => async (dispatch) => {
     ticketsAll = tickets;
     stopStatus = stop;
   }
+  if(stopStatus) {
+    dispatch(setListStatus('loaded'))
+  dispatch(clearLoadProgress())
+};
+  
   dispatch(uploadTickets(ticketsAll));
   dispatch(uploadProgress());
   dispatch(allTicketsLoaded(stopStatus));
